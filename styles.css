@@ -1,0 +1,2032 @@
+/* ===================== ГЛОБАЛЬНЫЕ СТИЛИ ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #e0e0ff;
+  font-family: 'Play', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===================== ОСНОВНОЕ ОКНО ===================== */
+.tech-window {
+  position: fixed;
+  inset: 16px;
+  background: rgba(18, 18, 28, 0.88);
+  border: 1px solid #0a84ff44;
+  border-radius: 0px;
+  box-shadow: 0 0 40px #0a84ff33;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  top: 50px;
+  bottom: 10px;
+  left: 0px;
+  width: 100%;
+  
+}
+
+header {
+  display: flex;
+  padding: 12px 24px;
+  background: rgba(10, 15, 35, 0.9);
+  border-bottom: 1px solid #0a84ff33;
+
+  
+  align-items: center;
+  z-index: 11000;
+  
+}
+
+.science-status-bar {
+    
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 12px;
+    background: rgba(19, 60, 114, 0.6);
+    border: 1px solid rgba(77, 168, 255, 0.25);
+    margin-left: 20px; /* Отступ от заголовка */
+    margin-right: auto; 
+    
+    /* Твой фирменный клип-патч */
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 10px) 100%, 0 100%, 0 8px);
+    font-family: 'Play', sans-serif;
+    z-index: 19000;
+}
+
+.science-status-bar img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    /* Без рамок и клип-патча для иконки, как ты просил */
+    filter: drop-shadow(0 0 3px #4da8ff);
+}
+
+.science-status-value {
+    color: #4da8ff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(77, 168, 255, 0.5);
+}
+
+/* Эффект для плюса */
+.science-plus {
+    color: #80f8ff;
+    margin-right: 2px;
+    opacity: 0.8;
+}
+
+
+h1 {
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #4da8ff;
+    margin: 0; /* Убираем дефолтные отступы */
+}
+
+#reset-btn {
+    order: 1;
+    padding: 4px 12px;
+    background: rgba(42, 26, 26, 0.8); /* Темный бордо */
+    color: #ff6666;
+    border: 1px solid rgba(255, 102, 102, 0.4);
+    cursor: pointer;
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+
+    /* ФИРМЕННЫЙ КЛИП-ПАТЧ (как у всех элементов хедера) */
+    clip-path: polygon(
+        8px 0, 
+        100% 0, 
+        100% calc(100% - 8px), 
+        calc(100% - 10px) 100%, 
+        0 100%, 
+        0 8px
+    );
+}
+
+#reset-btn:hover {
+    background: #ff4444;
+    color: #1a0a0a;
+    border-color: #ff8888;
+    /* Яркое красное свечение при наведении */
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+    transform: translateY(-1px);
+    filter: brightness(1.2);
+}
+
+#reset-btn:active {
+    transform: translateY(1px) scale(0.95);
+}
+
+
+/* ===================== КОНТЕНТ ===================== */
+.content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Боковая панель с разделами */
+.sections-sidebar {
+    width: 220px;
+    background: rgba(12, 12, 24, 0.92);
+    border-right: 1px solid #0a84ff22;
+    padding: 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    z-index: 11000;
+}
+
+.sections-sidebar button {
+    position: relative;
+    height: 44px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.514);
+    border: 1px solid #0a84ff44;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0;
+    clip-path: polygon(
+        24px 0, 
+        calc(100% - 8px) 0, 
+        100% 8px, 
+        100% calc(100% - 24px), 
+        calc(100% - 24px) 100%, 
+        8px 100%, 
+        0 calc(100% - 8px), 
+        0 24px
+    );
+    overflow: hidden;
+}
+
+/* Стили для самой иконки */
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: rgba(10, 132, 255, 0.15);
+    clip-path: polygon(
+        8px 0,
+        100% 0,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        0 100%,
+        0 8px
+    );
+    padding: 4px;
+    filter: brightness(0.9) drop-shadow(0 0 2px rgba(10, 132, 255, 0.4));
+    transition: all 0.2s ease;
+    border: 1px solid rgba(10, 132, 255, 0.3);
+}
+
+/* --- СОСТОЯНИЕ: HOVER (Наведение) --- */
+.sections-sidebar button:hover {
+    background: rgba(10, 132, 255, 0.35); /* Ярче фон */
+    color: #fff;
+    border-color: #55aaff; /* Светлее граница */
+    box-shadow: 0 0 12px rgba(10, 132, 255, 0.2);
+}
+
+.sections-sidebar button:hover .btn-icon {
+    filter: brightness(1.2) drop-shadow(0 0 5px rgba(10, 132, 255, 0.5));
+    transform: scale(1.03);
+    background: rgba(10, 132, 255, 0.4);
+}
+
+/* --- СОСТОЯНИЕ: ACTIVE (Выбрано) --- */
+.sections-sidebar button.active {
+    background: rgba(10, 132, 255, 0.2); 
+    color: #fff;
+    border-color: #0a84ff;
+    box-shadow: inset 0 0 15px rgba(10, 132, 255, 0.4); 
+}
+
+.sections-sidebar button.active .btn-icon {
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(10, 132, 255, 0.8));
+    transform: scale(1.05);
+    background: rgba(10, 132, 255, 0.3);
+    border-color: rgba(128, 248, 255, 0.8);
+}
+
+/* Дополнительная яркость, если навели на уже активную кнопку */
+.sections-sidebar button.active:hover {
+    background: rgba(10, 132, 255, 0.45);
+}
+
+/* Спецэффекты только для активной кнопки */
+.sections-sidebar button.active::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 15px;
+    background: radial-gradient( ellipse at center, rgba(128, 248, 255, 0.4) 0%, transparent 75% );
+    filter: blur(5px);
+    z-index: 0;
+    pointer-events: none;
+    animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.sections-sidebar button.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(128, 248, 255, 0) 10%,
+        rgba(128, 248, 255, 0.4) 30%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(128, 248, 255, 0.4) 70%,
+        rgba(128, 248, 255, 0) 90%,
+        transparent 100%
+    );
+    animation: techBottomShimmer 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+    z-index: 11000;
+    filter: drop-shadow(0 0 8px rgba(128, 248, 255, 0.6));
+}
+
+
+/* Используем уже созданные анимации из карточки */
+/* @keyframes techBottomShimmer { ... } */
+/* @keyframes pulseGlow { ... } */
+
+
+/* ===================== ДЕРЕВО ТЕХНОЛОГИЙ ===================== */
+.tree-view {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  background: linear-gradient(to bottom, #3535351e 0%, #2929291e 35%, #03030b 75%, #020209 100%);
+  padding: 60px 40px 40px;
+  scrollbar-width: thin;
+  scrollbar-color: #4da8ff33 #0a142866;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Фоновая сетка */
+.tree-view::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(40, 60, 100, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 60, 100, 0.22) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+.tree-view > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Скроллбар */
+.tree-view::-webkit-scrollbar { width: 10px; height: 10px; }
+.tree-view::-webkit-scrollbar-track {
+  background: #0a142866;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+.tree-view::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4da8ff88, #0a84ff66);
+  border-radius: 10px;
+  border: 2px solid #0a142866;
+  box-shadow: 0 0 8px #4da8ff55, inset 0 0 4px #4da8ff99;
+  transition: all 0.18s ease;
+  z-index: 30;
+}
+.tree-view::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #60b0ffaa, #1a9cff88);
+  box-shadow: 0 0 14px #60b0ff99, inset 0 0 6px #60b0ffcc;
+  border-color: #1a9cff66;
+  z-index: 30;
+}
+.tree-view::-webkit-scrollbar-corner { background: #0a142866; }
+
+.tree-view.dragging { cursor: grabbing; }
+
+/* SVG соединения */
+#connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 8000px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cards-container {
+  position: relative;
+  min-width: 4200px;
+  min-height: 2400px;
+  z-index: 2;
+}
+
+.subsection-header {
+  position: absolute;
+  left: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #55aaff;
+  background: rgba(10, 25, 50, 0.85);
+  border: 1px solid #3388ff66;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  border-radius: 6px;
+  padding: 9px 22px;
+  z-index: 5;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.6);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
+
+/* ===================== КАРТОЧКИ ТЕХНОЛОГИЙ ===================== */
+/* ===================== ПАРА КАРТОЧКА + TARGET ===================== */
+.tech-pair {
+    position: absolute;
+    width: 110px;
+    height: 160px;
+    z-index: 900;
+}
+
+/* Основная карточка */
+.tech-card {
+    position: absolute;
+    width: 110px;
+    height: 160px;
+    background: rgba(22, 22, 38, 0.92);
+    border: 1px solid #0a84ff66;
+    overflow: hidden;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.815);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(10px);
+    z-index: 900;
+    backdrop-filter: blur(8px);
+
+    clip-path: polygon(
+        24px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 14px),
+        calc(100% - 14px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 24px
+    );
+}
+
+/* Карточка-мишень */
+.tech-target {
+    position: absolute;
+    width: 126px;
+    height: 162px;
+    pointer-events: none;
+    z-index: 920;
+    opacity: 0;
+    left: 1px;
+    top: -1px;
+    transition: all 0.35s ease;
+}
+
+.tech-pair {
+    position: absolute;
+    width: 110px;
+    height: 160px;
+}
+
+.tech-target.target-hover {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+.tech-target.target-hover::before {
+    animation: targetPulse 1.5s infinite alternate ease-in-out;
+}
+
+.tech-target::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    background: 
+        linear-gradient(to right, #0a84ff 1px, transparent 1px) 0 0,
+        linear-gradient(to bottom, #0a84ff 1px, transparent 1px) 0 0,
+        linear-gradient(to left, #0a84ff 1px, transparent 1px) 100% 0,
+        linear-gradient(to bottom, #0a84ff 1px, transparent 1px) 100% 0,
+        linear-gradient(to left, #0a84ff 1px, transparent 1px) 100% 100%,
+        linear-gradient(to top, #0a84ff 1px, transparent 1px) 100% 100%,
+        linear-gradient(to right, #0a84ff 1px, transparent 1px) 0 100%,
+        linear-gradient(to top, #0a84ff 1px, transparent 1px) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    opacity: 0.9;
+}
+
+/* Появление при наведении */
+.tech-pair:hover .tech-target {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+.tech-pair:hover .tech-target::before {
+    animation: targetPulse 1.5s infinite alternate ease-in-out;
+}
+
+.tech-card:hover {
+    transform: translateX(10px) translateY(-6px) scale(1.05);
+    z-index: 1000;
+    border-color: #4da8ff;
+    filter: brightness(1.12);
+    box-shadow: 0 20px 40px rgba(10, 132, 255, 0.4);
+}
+
+/* Анимации burst */
+.tech-target.target-burst {
+    animation: targetBurst 0.55s ease-out forwards;
+}
+
+.tech-target.target-burst::before {
+    animation: targetCornersBurst 0.55s ease-out forwards;
+}
+
+@keyframes targetBurst {
+    0% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+    40% {
+        opacity: 0.5;
+        transform: scale(1.22);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.45);
+    }
+}
+
+@keyframes targetCornersBurst {
+    0% {
+        inset: -12px;
+        opacity: 0.95;
+    }
+    100% {
+        inset: -26px;
+        opacity: 0;
+    }
+}
+
+.tech-card.locked {
+  opacity: 1;
+  border-color: #ff4444;
+  filter: saturate(0.55) brightness(0.80);
+}
+
+/* Эффект предупреждающих полос для заблокированной иконки */
+.tech-card.locked .card-icon-container {
+    position: relative;
+    background: repeating-linear-gradient(
+        -45deg, /* Изменено на отрицательный угол для отзеркаливания */
+        rgba(255, 200, 0, 0.15),
+        rgba(255, 200, 0, 0.15) 10px,
+        transparent 10px,
+        transparent 20px
+    ),
+    #0f0f1e;
+}
+
+/* Дополнительно: можно слегка затемнить саму иконку внутри заблокированной карточки */
+.tech-card.locked .card-icon-container img {
+    filter: grayscale(1) contrast(1.2) opacity(0.4);
+    mix-blend-mode: luminosity;
+}
+
+
+.card-icon-container {
+  width: 100%;
+  height: 110px;
+  background: #0f0f1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.card-icon-container img {
+  width: 180%;
+  height: 138%;
+  object-fit: contain;
+  image-rendering: crisp-edges;
+}
+
+.card-footer {
+  height: 50px;
+  background: rgba(10, 15, 35, 0.92);
+  border-top: 1px solid #0a84ff44;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.card-name {
+  font-size: 9px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.3;
+  color: #d0e0ff;
+}
+
+
+
+/* Состояние выбранной карточки */
+.tech-card.selected {
+  position: relative;
+  z-index: 2;
+  filter: brightness(1.1);
+  border-bottom: 2px solid rgba(143, 201, 255, 0.8);
+}
+
+/* Фоновое мягкое свечение (пульсация) */
+.tech-card.selected::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 20px;
+  background: radial-gradient(
+    ellipse at center, 
+    rgba(128, 248, 255, 0.3) 0%, 
+    transparent 75%
+  );
+  filter: blur(6px);
+  z-index: -1;
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+/* Магический перелив по нижней грани */
+.tech-card.selected::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 200%; /* Умеренная ширина для плавного прохода */
+  height: 3px;
+  /* Градиент стал более "растянутым" и прозрачным по краям */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(128, 248, 255, 0) 10%,
+    rgba(128, 248, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(128, 248, 255, 0.4) 70%,
+    rgba(128, 248, 255, 0) 90%,
+    transparent 100%
+  );
+  /* Используем transform для плавности 60 FPS */
+  animation: techBottomShimmer 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 0 10px rgba(128, 248, 255, 0.6));
+}
+
+/* Остановка анимации */
+.tech-card.selected.paused-shimmer::after {
+  animation-play-state: paused;
+}
+
+/* Анимации */
+@keyframes techBottomShimmer {
+  0% { 
+    transform: translateX(-100%); 
+    opacity: 0; 
+  }
+  20%, 80% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(50%); 
+    opacity: 0; 
+  }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
+  100% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
+}
+
+
+/* ===================== ПОПАП ===================== */
+.popup {
+  position: fixed !important;
+  z-index: 10000;
+
+  background: radial-gradient(circle at 50% 35%, rgba(40, 65, 130, 0.77) 0%, rgba(22, 38, 85, 0.74) 50%, rgba(14, 21, 49, 0.70) 100%);
+  border: 1px solid #66b5ffbd;
+  border-radius: 0;
+  padding: 24px 28px 20px;
+  width: 1020px;                    /* Фиксированная ширина */
+  max-width: 1020px;
+  min-width: 1020px;                /* Защищаем от сужения */
+  box-shadow: 0 12px 50px #000c, 0 0 40px #4da8ff44, inset 0 0 80px rgba(100, 180, 255, 0.1);
+  pointer-events: auto;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  backdrop-filter: blur(8px);
+  height: 650px;
+  overflow: visible;
+
+  /* Техно-стиль срезанных углов */
+  clip-path: polygon(
+    28px 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% calc(100% - 32px),
+    calc(100% - 38px) 100%,
+    12px 100%,
+    0 calc(100% - 12px),
+    0 26px
+  );
+}
+
+
+
+/* Фоновые соты (прицелы с тонкими линиями) */
+.popup::after {
+    content: '';
+    position: absolute;
+    top: 48%; /* Было 48 */
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+    
+    background: 
+        /* Яркая точка на пересечении */
+        radial-gradient(circle at 0% 0%, rgba(120, 200, 255, 0.5) 1.8px, transparent 0),
+        /* Тончайшая горизонтальная линия (0.5px в каждую сторону от угла) */
+        linear-gradient(90deg, 
+            rgba(120, 200, 255, 0.08) 0%, rgba(120, 200, 255, 0.08) 1.5%, 
+            transparent 2%, transparent 98%, 
+            rgba(120, 200, 255, 0.08) 98.5%, rgba(120, 200, 255, 0.08) 100%),
+        /* Тончайшая вертикальная линия */
+        linear-gradient(0deg, 
+            rgba(120, 200, 255, 0.08) 0%, rgba(120, 200, 255, 0.08) 1.5%, 
+            transparent 2%, transparent 98%, 
+            rgba(120, 200, 255, 0.08) 98.5%, rgba(120, 200, 255, 0.08) 100%);
+
+    background-size: 54px 54px;
+    background-position: 0 0;
+    opacity: 0.82;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen;
+
+    animation: 
+        honeycomb-drift 85s linear infinite, 
+        honeycomb-blink 5s ease-in-out infinite alternate;
+
+    mask-image: linear-gradient(to bottom, transparent 5%, rgba(0,0,0,0.9) 25%, rgba(0,0,0,1) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 5%, rgba(0,0,0,0.9) 25%, rgba(0,0,0,1) 100%);
+}
+
+
+/* Дрейф */
+@keyframes honeycomb-drift {
+    from { background-position: 0 0; }
+    to { background-position: -540px -540px; }
+}
+
+/* Плавное мерцание */
+@keyframes honeycomb-blink {
+    0% { opacity: 0.25; }
+    100% { opacity: 0.8; }
+}
+
+.future-header-surface-plate {
+    position: absolute;
+    /* Позиционирование по вашим параметрам */
+    top: 0px;
+    left: 270px;
+    width: 690px;
+    height: 18px;
+    
+    /* Темно-бледно-серый с оттенком голубого */
+    background-color: #2a344088; 
+    
+    /* Трапеция: сверху шире, снизу уже */
+    /* Отрезаем по 15px снизу с каждой стороны для скоса */
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 15px) 100%, 15px 100%);
+    
+    /* Добавляем легкую рамку для четкости (опционально) */
+    border-top: 1px solid rgba(128, 201, 255, 0.3);
+    
+    z-index: 5;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ice-bottom-plate {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Высота ровно 30% от высоты попапа */
+    height: 30%; 
+    
+    /* Вертикальный градиент: сверху прозрачный, снизу почти белый */
+    background: linear-gradient(
+        to top, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.05) 30%, 
+        transparent 100%
+    );
+    
+    /* Слой глубоко под контентом */
+    z-index: -3; 
+    
+    /* Игнорирует клики, чтобы не мешать кнопкам */
+    pointer-events: none; 
+    
+    /* Опционально: можно добавить легкое размытие, чтобы градиент был еще мягче */
+    filter: blur(4px); 
+}
+
+.popup-close {
+    position: absolute;
+    top: 4px;
+    right: 36px;
+    width: 26px;
+    height: 26px;
+    background: rgba(255, 60, 60, 0.1);
+    border: 1px solid rgba(255, 80, 80, 0.4);
+    color: #ff8888;
+    font-size: 1.0rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.2s ease;
+    
+    /* Геометрия: 2 угла сильно откусаны, 2 угла слабо */
+    clip-path: polygon(
+        30% 0%,      /* Верх-лево (сильный срез старт) */
+        90% 0%,      /* Верх-право (слабый срез старт) */
+        100% 10%,    /* Верх-право (слабый срез конец) */
+        100% 70%,    /* Низ-право (сильный срез старт) */
+        70% 100%,    /* Низ-право (сильный срез конец) */
+        10% 100%,    /* Низ-лево (слабый срез старт) */
+        0% 90%,      /* Низ-лево (слабый срез конец) */
+        0% 30%       /* Верх-лево (сильный срез конец) */
+    );
+}
+
+.popup-close:hover {
+    background: rgba(255, 60, 60, 0.3);
+    color: #fff;
+    border-color: #ff3333;
+    box-shadow: 0 0 15px rgba(255, 50, 50, 0.5);
+    transform: scale(1.0);
+}
+
+
+.bottom-right-angle-plate {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1020px;
+    height: 650px;
+    z-index: 10001;
+    pointer-events: none;
+    display: none;
+}
+
+.bottom-right-angle-plate::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 200px;
+    height: 200px;
+    background: #66b5ff;
+    
+    /* Добавляем внутреннее свечение самой линии */
+    box-shadow: 0 0 10px rgba(102, 181, 255, 0.4);
+
+    clip-path: polygon(
+        /* --- ВНЕШНИЙ КОНТУР --- */
+        100% 0, 
+        100% calc(100% - 36px), 
+        calc(100% - 42px) 100%, 
+        0 100%, 
+        
+        /* --- ВНУТРЕННИЙ КОНТУР --- */
+        0 calc(100% - 1px), 
+        calc(100% - 42px + 1.2px) calc(100% - 2px), 
+        calc(100% - 2px) calc(100% - 36px + 1.2px), 
+        calc(100% - 1px) 0 
+    );
+
+    /* Двойное свечение: одно плотное, второе мягкое и широкое */
+    filter: 
+        drop-shadow(0 0 2px rgba(102, 181, 255, 0.9)) 
+        drop-shadow(0 0 6px rgba(10, 132, 255, 0.5));
+        
+    opacity: 0.45;
+    
+    /* Принудительное сглаживание для браузеров */
+    image-rendering: -webkit-optimize-contrast;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Эффект легкого мерцания для голограммы */
+@keyframes holo-flicker {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+    95% { opacity: 0.6; }
+}
+
+
+
+
+
+
+/* ================== BACKDROP — РАЗМЫТИЕ ФОНА ================== */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  
+  background: rgba(3, 6, 20, 0.58);
+  backdrop-filter: blur(1px) saturate(1);
+  -webkit-backdrop-filter: blur(1px) saturate(1);
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1);
+
+ 
+  
+  /* Ключевой момент */
+  pointer-events: none;           /* ← Позволяет кликам проходить сквозь */
+}
+
+.popup-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  /* pointer-events остаётся none даже когда активен */
+}
+
+
+
+
+
+
+
+
+
+
+.popup[style*="display: block"] { opacity: 1; }
+
+/* Стрелка */
+.popup::before {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  border: 10px solid transparent;
+  top: 28px;
+}
+
+.popup.popup-right::before { left: -20px; border-right-color: #4da8ff88; }
+.popup.popup-left::before  { right: -20px; border-left-color: #4da8ff88; }
+
+/* Внутренняя структура попапа */
+.popup-content {
+   position: relative;
+    overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px 24px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Общий сброс для плашек */
+.avatar-plate, .horizontal-plate {
+    position: absolute;
+    background-color: rgba(14, 16, 19, 0.75);
+    pointer-events: none; /* Пропускают клики сквозь себя */
+    z-index: 0; /* Если нужно, чтобы были ПОД контентом, ставь 0, а контенту z-index: 2 */
+}
+
+
+/* Аватарная плашка */
+.avatar-plate {
+    top: 0px;
+    left: 0px;
+    width: 278px;
+    height: 275px;
+    
+    
+    /* Добавлен срез 20px слева-сверху и сохранен 40px справа-снизу */
+    clip-path: polygon(
+        28px 0,                      /* Новый срез сверху */
+        100% 0,                      /* Верхний правый угол */
+        100% calc(100% - 40px),      /* Начало нижнего среза */
+        calc(100% - 40px) 100%,      /* Конец нижнего среза */
+        0 100%,                      /* Нижний левый угол */
+        0 28px                       /* Новый срез слева */
+    );
+    
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+/* Горизонтальная плашка */
+.horizontal-plate {
+    top: 0px;
+    left: 278px;
+    right: 0px; /* Чтобы не выходила за края попапа, если он не на весь экран */
+    height: 90px;
+    
+}
+
+
+
+.big-icon {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px; /* Оставь, если нужно для фолбека */
+    
+    /* Обновленный clip-path со скосом 40px справа-внизу */
+    clip-path: polygon(
+        12px 0,                     /* Верхний левый */
+        100% 0,                     /* Верхний правый */
+        100% calc(100% - 40px),     /* Начало скоса справа */
+        calc(100% - 40px) 100%,     /* Конец скоса внизу */
+        0 100%,                     /* Нижний левый */
+        0 14px                      /* Возврат к верхнему левому */
+    );
+    
+    box-shadow: 0 0 20px rgba(77, 168, 255, 0.3);
+}
+
+
+/* Правая колонка */
+.popup-right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;           /* важно */
+  max-width: 100%;
+  
+}
+
+#popup-name {
+    position: absolute;
+    top: 0px;
+    left: 255px;
+    right: auto;
+    
+    /* Градиентная заливка текста */
+    background: linear-gradient(to bottom, #ffffff 0%, #4da8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #4da8ff; /* Фолбэк для старых браузеров */
+
+    font-size: 1.42rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 500px;
+}
+
+
+/* ===================== РАСШИРЕННЫЙ БЛОК ОПИСАНИЯ ===================== */
+.desc-wrapper {
+    position: absolute;
+    right: 0px;
+    top: 35px;
+    width: 395px;
+    height: 207px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.07) 0%, rgba(133, 133, 133, 0.26) 100%);
+    backdrop-filter: blur(64px);
+    padding: 12px 6px 12px 14px; 
+    border: 1px solid rgba(77, 168, 255, 0.18);
+    box-sizing: border-box;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 22px) 100%, 0 100%, 0 14px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 1. Ширина дорожки */
+.desc-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* 2. Трек */
+.desc-wrapper::-webkit-scrollbar-track {
+    background: rgba(20, 30, 60, 0.4) !important;
+    margin: 5px 0;
+}
+
+/* 3. Бегунок (Thumb) — ГЕОМЕТРИЧЕСКИЙ СРЕЗ через градиенты */
+.desc-wrapper::-webkit-scrollbar-thumb {
+    background-color: #6a8caf !important;
+    
+    
+   
+
+    /* Чтобы срезы были видны, добавляем прозрачную рамку */
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+    
+    border-radius: 10px;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 22px) 100%, 0 100%, 0 14px);
+}
+
+/* 4. Наведение */
+.desc-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #80c0ff !important;
+    background-image: 
+        linear-gradient(135deg, transparent 4px, #80c0ff 0),
+        linear-gradient(225deg, transparent 0px, #80c0ff 0),
+        linear-gradient(315deg, transparent 8px, #80c0ff 0),
+        linear-gradient(45deg, transparent 8px, #80c0ff 0);
+}
+
+#popup-desc {
+    font-family: 'Play', sans-serif;
+    font-style: italic;
+    color: #c0c8e0;
+    line-height: 1.45;
+    font-size: 0.75rem;
+    margin: 0;
+    padding-right: 12px;
+}
+
+
+
+
+/* ===================== НИЖНЯЯ ЧАСТЬ ПОПАПА (Требует / Открывает) ===================== */
+.popup-bottom {
+  position: absolute;
+  
+  top: 270px;
+  width: 550px;
+
+  height: 330px;          /* ← ключевой фикс */
+  overflow: hidden;       /* обрезаем всё лишнее */
+
+  padding-left: 10px;
+  background-color: #00000027;
+
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #3388ff77;
+}
+
+.popup-bottom strong {
+  display: block;
+  margin: 8px 10px 8px;
+  color: #88ccff;
+  font-size: 1.05rem;
+}
+
+.popup-list {
+  max-width: 535px;
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+
+  overflow-y: auto;     /* ← вот это добавляем */
+  overflow-x: hidden;
+
+  max-height: 180px;    /* или подгони под UI */
+  padding-right: 6px;   /* чтобы не наезжал скролл */
+}
+
+.popup-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-list::-webkit-scrollbar-track {
+  background: rgba(20, 30, 60, 0.4);
+  margin: 5px 0;
+  border-radius: 6px;
+}
+
+.popup-list::-webkit-scrollbar-thumb {
+  background-color: #6a8caf;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.popup-list::-webkit-scrollbar-thumb:hover {
+  background-color: #80c0ff;
+}
+
+/* Общий контейнер строки */
+.popup-list-row {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Уменьшили зазор */
+    padding: 4px 8px; /* Уменьшили отступы (было 8px 12px) */
+    background: rgb(19, 60, 114);
+    border: 1px solid rgba(77, 168, 255, 0.15);
+    border-radius: 6px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    min-width: 160px; /* Уменьшили минимальную ширину (было 220px) */
+    max-width: 240px; /* Уменьшили макс. ширину, чтобы влезало больше в ряд */
+    z-index: 900;
+    /* Уменьшенный клип-патч (срезы по 8-10px вместо 12-22px) */
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 14px) 100%, 0 100%, 0 10px);
+    
+}
+
+.popup-list-row:hover {
+  background: rgba(77, 168, 255, 0.12);
+  border-color: #4da8ff66;
+}
+
+/* Мини-иконка */
+.mini-icon {
+    width: 32px; /* Было 42px */
+    height: 32px; /* Было 42px */
+    flex-shrink: 0;
+    border: 1px solid #3388ff99;
+    border-radius: 4px;
+    background: rgba(15, 15, 30, 0.7);
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+/* Контейнер текста (название + уровень) */
+.popup-list-row .text-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* центрируем содержимое по вертикали */
+  gap: 1px;
+}
+
+/* Название технологии */
+/* Компактный текст */
+.popup-tech-name {
+    font-size: 11px; /* Было 13px */
+    line-height: 1.2;
+    color: #d0e0ff;
+    font-weight: 500;
+}
+
+
+
+/* Дополнительный текст (уровень) */
+.popup-list-row .level-info {
+    color: #88ccff88;
+    font-size: 0.75rem; /* Было 0.81rem */
+    white-space: nowrap;
+}
+/* Состояние "не исследовано" */
+.popup-list-row.requires-not-researched .popup-tech-name { 
+  color: #ff6666; 
+}
+.popup-list-row.requires-not-researched .mini-icon { 
+  opacity: 0.45; 
+}
+
+/* Скрытие пустых секций */
+.popup-bottom #popup-requires-list[style*="none"],
+.popup-bottom #popup-unlocks-list[style*="none"] { 
+  margin: 0; 
+}
+
+/* ===================== УРОВЕНЬ ТЕХНОЛОГИИ В ПОПАПЕ ===================== */
+.popup-level-info {
+  position: fixed;
+  top: 60px;
+  right: 433px;
+  width: 300px;
+  background: rgba(10, 25, 50, 0.85);
+  backdrop-filter: blur(64px);
+  border: 1px solid #3388ff66;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 0px 0 6px 0;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'Play' sans-serif;
+  font-size: 14px;
+  transition: all 0.4s ease;
+}
+
+/* ===================== ЦВЕТОВЫЕ ГРАДИЕНТЫ ПО СТАДИЯМ ===================== */
+
+/* Базовая */
+.popup-level-info.base {
+  background: linear-gradient(90deg, #2f2f2f, #4a3a2a) !important;
+  border-color: #666666;
+}
+
+/* Примитивная */
+.popup-level-info.primitive {
+  background: linear-gradient(90deg, #3f2a1f, #8b2a2a) !important;
+  border-color: #c24a4a;
+}
+
+/* Продвинутая (Advanced) */
+.popup-level-info.advanced {
+  background: linear-gradient(90deg, #b8860b, #9acd32) !important;
+  border-color: #d4af37;
+}
+
+/* Развитая / Sophisticated */
+.popup-level-info.sophisticated {
+  background: linear-gradient(90deg, #228b22, #40e0d0) !important;
+  border-color: #4ade4a;
+}
+
+/* Сверхпродвинутая (Super) */
+.popup-level-info.super {
+  background: linear-gradient(90deg, #20b2aa, #4682b4) !important;
+  border-color: #4adede;
+}
+
+/* Легендарная */
+.popup-level-info.legendary {
+  background: linear-gradient(90deg, #4682b4, #6a5acd) !important;
+  border-color: #7b68ee;
+}
+
+/* Мифическая */
+.popup-level-info.mythic {
+  background: linear-gradient(90deg, #4b0082, #8a2be2) !important;
+  border-color: #ba55d3;
+}
+
+/* Божественная — самая красивая */
+.popup-level-info.rainbow {
+  background: linear-gradient(90deg, 
+    #1e3a5f,     /* тёмно-голубой */
+    #2a6b8f,     /* насыщенный голубой */
+    #3a9ab8,     /* бирюзово-голубой */
+    #4ac4c4,     /* яркая бирюза */
+    #7a9be8,     /* светло-синий */
+    #9a7fd4,     /* мягкий лавандовый */
+    #8a6bc8,     /* умеренный фиолетовый */
+    #6a5ab8      /* глубокий синий-фиолетовый */
+  ) !important;
+  
+  border-color: rgba(100, 200, 255, 0.6);
+  box-shadow: 0 0 22px rgba(80, 180, 255, 0.35);
+}
+
+/* ===================== ТЕНИ ДЛЯ ТЕКСТА ===================== */
+.popup-level-info .popup-level-row *,
+.popup-level-info .popup-level-label,
+.popup-level-info .popup-level-value,
+.popup-level-info .popup-progression {
+  text-shadow: 
+    0 0 8px rgba(0, 0, 0, 0.9),
+    0 0 4px rgba(0, 0, 0, 0.95),
+    1px 1px 3px rgba(0, 0, 0, 1),
+    -1px -1px 3px rgba(0, 0, 0, 1) !important;
+}
+
+/* Усиление читаемости для особых стадий */
+.popup-level-info.rainbow .popup-level-row *,
+.popup-level-info.rainbow .popup-level-label,
+.popup-level-info.rainbow .popup-level-value,
+.popup-level-info.rainbow .popup-progression {
+  text-shadow: 
+    0 0 12px rgba(0, 0, 0, 0.95),
+    0 0 8px rgba(120, 200, 255, 0.5),
+    2px 2px 5px rgba(0, 0, 0, 1) !important;
+  color: #e8f0ff;
+}
+
+.popup-level-info.legendary .popup-level-row *,
+.popup-level-info.mythic .popup-level-row * {
+  color: #e0d4ff;
+}
+
+/* ===================== КОНТЕЙНЕР ИССЛЕДОВАНИЯ В ПОПАПЕ ===================== */
+.research-container {
+  position: absolute;
+  top: 102px;
+  right: 365px;
+  width: 300px;
+  background: rgba(15, 30, 60, 0.92);
+  border: 1px solid #3388ff88;
+  border-radius: 8px;
+  padding: 12px 16px 14px;
+  margin: 0px 0 0px 0;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  z-index: 1000;
+}
+
+
+.research-container:hover {
+  /* Увеличиваем прозрачность или яркость цвета */
+  background: rgba(25, 45, 85, 0.95); 
+  /* Опционально: делаем рамку чуть заметнее */
+  border-color: #3388ff;
+  /* Альтернативный вариант через фильтр (если не хотите менять rgba):
+     filter: brightness(1.2); */
+}
+
+/* Локер */
+.research-container.locked {
+  opacity: 0.45;
+  filter: saturate(0.6);
+  pointer-events: none;
+}
+
+/* Вертикальные деления-линейки (футуристическая шкала) */
+.research-container::before,
+.research-container::after {
+  content: '';
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 6px,
+    rgba(100, 180, 255, 0.55) 6px,
+    rgba(100, 180, 255, 0.55) 11px
+  );
+  opacity: 0.4;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.research-container::before { top: 10px; }   /* верхняя линейка */
+.research-container::after  { bottom: 10px; } /* нижняя линейка */
+
+.scientist-plaque {
+  position: absolute;
+  right: 0;
+  width: 128px;   /* или сколько нужно */
+  height: 128px;
+  z-index: -2;
+  opacity: 0.4;
+}
+
+.scientist-icon {
+  width: 128px;   /* или сколько нужно */
+  height: 128px;
+  object-fit: contain;
+}
+
+/* ===================== ПРОГРЕССБАР ===================== */
+.research-progress-wrapper {
+  height: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #3388ff99;
+  overflow: hidden;
+  position: relative;
+  margin: 8px 0 10px 0;
+  width: 90%;
+  margin-left: 5%;
+  clip-path: polygon(
+    12px 0, 
+    100% 0, 
+    100% calc(100% - 12px), 
+    calc(100% - 14px) 100%, 
+    0 100%, 
+    0 12px
+  ); /* откусываем левый верхний и правый нижний угол */
+}
+
+.research-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #4da8ff, #7ed0ff, #4da8ff);
+  transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* плавно и красиво */
+  position: relative;
+  box-shadow: 
+    0 0 14px #4da8ff88,
+    inset 0 2px 6px rgba(255,255,255,0.35);
+}
+
+/* Анимированный блик */
+.research-progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255,255,255,0.75) 50%,
+    transparent 75%
+  );
+  animation: research-shine 2.6s linear infinite;
+}
+
+@keyframes research-shine {
+  0%   { transform: translateX(-140%); }
+  100% { transform: translateX(320%); }
+}
+
+/* ===================== ТЕКСТОВЫЕ ЭЛЕМЕНТЫ ===================== */
+.research-left {
+  flex: 1;
+  min-width: 0;
+  
+}
+
+.research-action {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #4da8ff;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-family: 'Play', sans-serif;
+  background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Состояние: Исследовать (Синий -> Белый) */
+.research-action:hover {
+    background: linear-gradient(to right, #bedeff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+}
+
+/* Состояние: Исследуется (Золотой -> Белый) */
+.research-action.researching {
+    background: linear-gradient(to right, #ffe59e 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+}
+
+/* Состояние: Пауза / Завершено (Зеленый -> Белый) */
+.research-action.paused {
+    background: linear-gradient(to right, #8cffc2 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+}
+
+.research-action.max-level {
+  background: #1a1a2e;
+  color: #666;
+  cursor: default;
+  border-color: #444;
+}
+ 
+
+
+.research-right {
+    min-width: 0;
+    flex-shrink: 1;
+    font-family: 'Play', sans-serif; /* Добавил пропущенную запятую */
+    text-align: right;
+    font-size: 0.84rem;
+    line-height: 1.3;
+    color: #d6e7ff;
+    
+    /* Тень во все стороны: делает текст "бронированным" для любого фона */
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.8), 
+        -1px -1px 2px rgba(0, 0, 0, 0.8), 
+        1px -1px 2px rgba(0, 0, 0, 0.8), 
+        -1px 1px 2px rgba(0, 0, 0, 0.8), 
+        0 0 10px rgba(77, 168, 255, 0.5);
+}
+
+
+/* Время — используем Orbitron для футуристичности */
+.research-time {
+  font-family: 'Play', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  letter-spacing: 0.5px;
+}
+
+/* Наука — обычный Play */
+.research-science {
+  font-family: 'Play', sans-serif;
+  font-size: 0.81rem;
+  color: #d6e7ff;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+/* ===================== УРОВЕНЬ В КАРТОЧКЕ ===================== */
+.level-badge {
+  position: absolute;
+  left: 4px;
+  bottom: -6px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 4px;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+  background: #444;
+  min-width: 42px;
+  text-align: center;
+}
+
+.level-badge.rainbow {
+  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff0000);
+  background-size: 300% 100%;
+  animation: rainbow-shift 4s linear infinite;
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.8);
+}
+
+@keyframes rainbow-shift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* Цвета уровней */
+.level-badge.level-0     { background: #555555; }
+.level-badge.base        { background: #5c4033; }
+.level-badge.primitive   { background: #800000; }
+.level-badge.advanced    { background: #b8860b; }
+.level-badge.sophisticated { background: #228b22; }
+.level-badge.super       { background: #008b8b; }
+.level-badge.legendary   { background: #00008b; }
+.level-badge.mythic      { background: #4b0082; }
+
+/* ===================== ХЕДЕР ИССЛЕДОВАНИЙ ===================== */
+
+/* Контейнер: держит карточки в одну линию */
+.header-research {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+/* Базовая карточка исследования */
+.header-research-item {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(10, 25, 50, 0.9);
+    border: 1px solid rgba(51, 136, 255, 0.4);
+    padding: 8px 18px;
+    font-size: 11px;
+    color: #aaccff;
+    white-space: nowrap;
+    
+    /* Добавляем, чтобы расчеты ширины в JS были точными */
+    box-sizing: border-box; 
+    
+    min-width: 90px;
+    /* Увеличиваем запас, чтобы JS мог свободно менять ширину */
+    max-width: 400px; 
+    
+    overflow: hidden;
+    /* Убираем ellipsis, так как JS теперь сам подгоняет ширину под текст */
+    text-overflow: clip; 
+    
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 10px) 100%, 0 100%, 0 8px);
+    
+    /* Оставляем transition, JS будет его использовать */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Оптимизация для частых изменений ширины */
+    will-change: width; 
+}
+
+
+
+
+
+/* Активное состояние с эффектом "Северного сияния" */
+.header-research-item.researching {
+    color: #f0ffff;
+    /* Глубокий фон для лучшего контраста сияния */
+    background: rgba(5, 15, 35, 0.95);
+    
+    /* Сложное многослойное свечение (внутреннее и внешнее) */
+    box-shadow: 
+        inset 0 0 15px rgba(0, 242, 255, 0.2),  /* Внутренняя бирюза */
+        inset 0 0 5px rgba(51, 136, 255, 0.3),   /* Внутренний голубой */
+        0 0 10px rgba(0, 242, 255, 0.3),         /* Внешняя бирюза */
+        0 0 20px rgba(51, 136, 255, 0.1);        /* Рассеянный голубой */
+
+    /* Анимация перелива цветов и сияния */
+    animation: auroraFlow 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+/* Анимация сияния: мягкий дрейф между цветами и интенсивностью света */
+@keyframes auroraFlow {
+    0% { 
+        border-color: #00f2ff8e; /* Пик бирюзы */
+        filter: drop-shadow(0 0 2px rgba(0, 242, 255, 0.4));
+        box-shadow: 
+            inset 0 0 20px rgba(0, 242, 255, 0.2), 
+            0 0 8px rgba(0, 242, 255, 0.5);
+    }
+    50% {
+        border-color: #3388ff; /* Переход в голубой */
+        filter: drop-shadow(0 0 5px rgba(51, 136, 255, 0.5));
+        box-shadow: 
+            inset 0 0 15px rgba(51, 136, 255, 0.25), 
+            0 0 15px rgba(51, 136, 255, 0.4);
+    }
+    100% { 
+        border-color: #80f8ff; /* Яркий акцент (почти белый бирюзовый) */
+        filter: drop-shadow(0 0 8px rgba(128, 248, 255, 0.6));
+        box-shadow: 
+            inset 0 0 25px rgba(128, 248, 255, 0.15), 
+            0 0 12px rgba(128, 248, 255, 0.6);
+    }
+}
+
+/* Прогресс */
+.header-research-item .header-progress {
+    color: #99ffff;
+    text-shadow: 0 0 8px rgba(153, 255, 255, 0.9);
+    margin-left: 7px;
+    font-weight: 500;
+}
+
+.header-level {
+  font-size: 11px;
+  opacity: 1;
+  margin-left: 4px;
+  color: #eeeeee;
+}
+
+/* ===================== HOVER ===================== */
+
+/* Общий hover — делаем заметно ярче, но без изменения размера */
+.header-research-item:hover {
+    filter: brightness(1.12) saturate(1.15);
+    border-color: rgba(51, 136, 255, 0.85);
+    background: rgba(22, 53, 107, 0.9);
+    box-shadow: 
+        inset 0 0 18px rgba(0, 242, 255, 0.35),
+        0 0 16px rgba(51, 136, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+/* Hover для активного исследования (ещё ярче) */
+.header-research-item.researching:hover {
+    filter: brightness(1.18) saturate(1.25);
+    border-color: #80f8ff;
+    box-shadow: 
+        inset 0 0 22px rgba(0, 242, 255, 0.45),
+        0 0 20px rgba(128, 248, 255, 0.7),
+        0 0 30px rgba(51, 136, 255, 0.4);
+}
+
+/* Усиление прогресса при наведении */
+.header-research-item:hover .header-progress {
+    color: #ddffff;
+    text-shadow: 0 0 12px rgba(187, 255, 255, 0.95);
+}
+
+
+
+
+
+
+/* ===================== КАСТОМНЫЙ ТУЛТИП ===================== */
+
+.header-tooltip {
+    position: fixed;
+    background-color: rgba(14, 16, 19, 0.75);          /* как у .researching */
+    color: #ffffff;
+    font-size: 11px;
+    padding: 6px 14px;
+    border: 1px solid rgba(51, 136, 255, 0.5);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.28s ease;
+    display: none;
+    
+    /* Тот же фирменный clip-path */
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 10px) 100%, 0 100%, 0 8px);
+    
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.8),
+        inset 0 0 18px rgba(0, 21, 22, 0.15),   /* бирюзовое свечение */
+        inset 0 0 8px rgba(51, 136, 255, 0.2);
+    
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    text-shadow: 0 0 6px rgba(170, 204, 255, 0.5);
+}
+
+/* Анимация появления */
+.header-tooltip {
+    transform: translateY(-10px);
+}
+
+.header-tooltip[style*="opacity: 1"] {
+    transform: translateY(0);
+}
+
+/* Дополнительное свечение при активном состоянии */
+.header-tooltip {
+    border-image: linear-gradient(to bottom, #00f2ff88, #3388ff88) 1;
+}
+
+
+/* ===================== АНИМИРОВАННАЯ СТРЕЛКА В ПРОГРЕССБАРЕ ===================== */
+.research-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #4da8ff, #7ed0ff, #4da8ff);
+  transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  box-shadow: 
+    0 0 14px #4da8ff88,
+    inset 0 2px 6px rgba(255,255,255,0.35);
+  overflow: hidden;
+}
+
+/* Анимированный треугольник */
+.research-progress::before {
+  content: '▷';
+  position: absolute;
+  top: calc(50% - 0px);
+  left: -25px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 8px rgba(255,255,255,0.9);
+  transform: translateY(-50%);
+  animation: movingArrow 2.7s linear infinite;
+  opacity: 0.95;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes movingArrow {
+  0% {
+    left: -25px;
+    opacity: 0.95;
+  }
+  65% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.15;        /* становится почти прозрачной ближе к правому краю */
+  }
+  100% {
+    left: calc(100% + 30px);
+    opacity: 0;
+  }
+}
+
+
+/* ===================== СПЕЦИФИЧЕСКИЕ ХАРАКТЕРИСТИКИ ===================== */
+#popup-stats-container {
+    position: absolute;
+    top: 250px;
+    right: 0px;
+    width: 400px;
+    z-index: 15;
+}
+
+.stats-header {
+    color: #88ccff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-left: 4px;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+}
+
+.stats-grid {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    background: rgba(10, 20, 45, 0.92);
+    border: 1px solid #3388ff77;
+    border-radius: 8px;
+    padding: 12px 14px 10px;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    
+    display: grid;
+    /* Сетка: Название, Текущее, Стрелка, Следующее */
+    grid-template-columns: 2fr 1.1fr 0.45fr 1.1fr;
+    /* Фиксированная высота строк */
+    grid-auto-rows: minmax(28px, auto);
+    row-gap: 4px;
+    column-gap: 8px;
+    
+    font-size: 11px;
+    line-height: 1.0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    align-content: start;
+    min-height: 180px;
+    overflow: hidden; 
+}
+
+.stats-grid.show-hover .stat-next {
+    opacity: 1;
+}
+
+/* Общие правила для всех ячеек для вертикального центрирования */
+.stat-name, .stat-current, .stat-change, .stat-next {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.stat-row {
+    display: contents; /* Позволяет дочерним элементам участвовать в сетке grid-контейнера */
+}
+
+.stat-name {
+    grid-column: 1;
+    color: #c0d0ff;
+    font-weight: 500;
+}
+
+.stat-current {
+    grid-column: 2;
+    color: #aaccff;
+    font-weight: 500;
+    justify-content: flex-end; /* Числа вправо */
+}
+
+.stat-change {
+    grid-column: 3;
+    justify-content: center; /* Стрелка строго по центру */
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.stat-next {
+    grid-column: 4;
+    color: #88ffbb;
+    font-weight: 500;
+    justify-content: flex-end; /* Числа вправо */
+}
+
+/* Базовая видимость колонки "следующий уровень" */
+.stats-grid.show-next .stat-change, 
+.stats-grid.show-next .stat-next {
+    opacity: 1;
+}
+
+/* Анимация пульсации для стрелок */
+@keyframes statsPulse {
+    0%, 100% { opacity: 0.5; filter: brightness(0.8); }
+    50% { opacity: 1; filter: brightness(1.2); }
+}
+
+/* Состояние исследования (мигание только стрелок) */
+.stats-grid.researching .stat-change {
+    animation: statsPulse 4s ease-in-out infinite;
+}
+
+/* Значения следующего уровня при исследовании не мигают */
+.stats-grid.researching .stat-next {
+    animation: none;
+    opacity: 1;
+}
+
+/* Цвета стрелок и их свечение */
+.stat-arrow.up {
+    color: #66ff99;
+    text-shadow: 0 0 5px #66ff99, 0 0 12px rgba(102, 255, 153, 0.6);
+}
+
+.stat-arrow.down {
+    color: #ff6666;
+    text-shadow: 0 0 5px #ff6666, 0 0 12px rgba(255, 102, 102, 0.6);
+}
+
+/* Окрашивание текста следующего значения */
+.stat-next.up {
+    color: #66ff99; /* Салатовый */
+    text-shadow: 0 0 5px rgba(102, 255, 153, 0.4);
+}
+
+.stat-next.down {
+    color: #ff6666; /* Красный */
+    text-shadow: 0 0 5px rgba(255, 102, 102, 0.4);
+}
+
+
+/* Заглушка, если данных нет */
+.stats-grid .unknown-stats {
+    grid-column: 1 / -1; /* Растягиваем на всю ширину */
+    color: #777777;
+    font-size: 1.05rem;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.stat-change {
+    will-change: opacity, transform;
+}

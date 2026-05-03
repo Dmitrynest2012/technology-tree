@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Технологическое дерево</title>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tech-window">
+  <header>
+    <h1>ТЕХНОЛОГИИ</h1>
+    <!-- Новый счетчик -->
+        <div id="science-counter" class="science-status-bar"></div>
+    <button id="reset-btn">X</button>
+  </header>
+
+  <div class="content">
+    <!-- Левая панель разделов -->
+    <nav class="sections-sidebar" id="sections"></nav>
+
+    <!-- Главная прокручиваемая область -->
+    <div class="tree-view" id="tree-view">
+      <!-- Backdrop для размытия фона при открытии попапа -->
+<div id="popup-backdrop" class="popup-backdrop"></div>
+      <svg id="connections"></svg>
+      <div id="cards-container" class="cards-container"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="popup" class="popup">
+    <!-- Плашки теперь лежат отдельно от контента -->
+    <div id="popup-avatar-plate" class="avatar-plate"></div>
+    <div id="popup-horizontal-plate" class="horizontal-plate"></div>
+    <div class="future-header-surface-plate"></div>
+    <div class="ice-bottom-plate"></div>
+    <div id='popup-exterior-plate' class="bottom-right-angle-plate"></div>
+    
+     <!-- Кнопка закрытия -->
+        <button id="popup-close-btn" class="popup-close">✕</button>
+
+    <div class="popup-content">
+
+        <img id="popup-icon" class="big-icon" src="" alt="Tech icon">
+        <div class="popup-right">
+            <div id="popup-name"></div>
+            <div id="popup-level-container"></div>
+        </div>
+        <div class="desc-wrapper">
+            <div id="popup-desc"></div>
+        </div>
+        <div class="popup-bottom">
+            <strong>Требует:</strong>
+            <div id="popup-requires-list" class="popup-list"></div>
+            <strong>Открывает:</strong>
+            <div id="popup-unlocks-list" class="popup-list"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="module" src="state.js"></script>
+<script type="module" src="data.js"></script>
+<script type="module" src="techTreeArrows.js"></script>
+<script type="module" src="popup.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
