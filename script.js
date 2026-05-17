@@ -252,6 +252,13 @@ export function renderRequiresList() {
   const requiresList = document.getElementById('popup-requires-list');
   if (!requiresList) return;
 
+  // Защита от лишних перерисовок
+  const currentHash = getRequiresHash(requires);
+  if (state.lastRenderedPopupId === state.currentPopupId && 
+      state.lastRequiresHash === currentHash) {
+    return;
+  }
+
   requiresList.innerHTML = '';
 
   if (requires.length > 0) {
@@ -262,23 +269,39 @@ export function renderRequiresList() {
       if (!reqTech) return;
 
       const isSufficient = isTechSufficient(req);
+      const display = getTechDisplay(rid);
 
       const row = document.createElement('div');
       row.className = 'popup-list-row';
       if (!isSufficient) row.classList.add('requires-not-researched');
 
       row.style.cursor = 'pointer';
-      
-      // Делаем мини-карточки кликабельными, нажатие по карточке переводит нас в попап этой карточки.
-      row.addEventListener('click', () => {
+
+      row.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+
         const targetCard = document.querySelector(`.tech-card[data-id="${rid}"]`);
-        openTechPopup(rid, targetCard);
+        if (targetCard) {
+          openTechPopup(rid, targetCard);
+        } else {
+          focusOnTechCard(rid);
+        }
       });
 
-      row.innerHTML = `
-        <img src="${reqTech.icon}" class="mini-icon" alt="">
-        <span class="popup-tech-name">${reqTech.name} <span style="color:#88ccff;">[Ур. ${minLevel}]</span></span>
-      `;
+      if (display.isRevealed) {
+        row.innerHTML = `
+          <img src="${reqTech.icon}" class="mini-icon" alt="">
+          <span class="popup-tech-name">${reqTech.name} <span style="color:#88ccff;">[Ур. ${minLevel}]</span></span>
+        `;
+      } else {
+        row.innerHTML = `
+          <div style="width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:18px; color:#555; background:#1a1a2e; border:1px solid #3388ff99; border-radius:4px; flex-shrink:0; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);">?</div>
+          <div class="text-content">
+            <span class="popup-tech-name">Неизвестная технология</span>
+            <span class="level-info">на уровне: ${minLevel}</span>
+          </div>
+        `;
+      }
 
       requiresList.appendChild(row);
     });
@@ -291,6 +314,18 @@ export function renderRequiresList() {
     const label = requiresList.previousElementSibling;
     if (label) label.style.display = 'none';
   }
+
+  // Сохраняем состояние
+  state.lastRenderedPopupId = state.currentPopupId;
+  state.lastRequiresHash = currentHash;
+}
+
+// Вспомогательная функция
+function getRequiresHash(requires) {
+  return requires.map(req => {
+    const rid = typeof req === 'string' ? req : req.id;
+    return `${rid}:${isRevealed(rid)}:${isTechSufficient(req)}`;
+  }).join('|');
 }
 
 /* ===================== ОСНОВНЫЕ ФУНКЦИИ ИССЛЕДОВАНИЯ ===================== */
@@ -387,7 +422,7 @@ export function toggleResearch(id) {
 }
 
 // === НОВАЯ ФУНКЦИЯ: центрирование на технологию ===
-function focusOnTechCard(techId) {
+export function focusOnTechCard(techId) {
   const tech = state.data.technologies[techId];
   if (!tech) return;
 
@@ -991,7 +1026,7 @@ updateScienceCounter();
 
 
 
-/* Функция инициализирует воспроизведение файла при первом клике пользователя по документу */
+/* Функция инициализирует воспроизведение файла при первом клике пользователя по документу 
 function initSciencePower() {
     const audio = new Audio('the power of science.mp3');
     audio.loop = true; // Включаем зацикливание
@@ -1007,5 +1042,5 @@ function initSciencePower() {
 
 // Запуск логики ожидания клика
 initSciencePower();
-
+*/
 

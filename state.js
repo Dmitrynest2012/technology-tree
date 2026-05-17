@@ -11,6 +11,10 @@ export const state = {
   researchProgress: {},       
   popupRevealedState: null,    
   popupCloseTimeout: null,     
+  
+// Добавленные для оптимизации
+  lastRenderedPopupId: null,
+  lastRequiresHash: null,
 
   // DOM-элементы
   sectionsEl:     document.getElementById('sections'),

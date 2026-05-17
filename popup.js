@@ -13,6 +13,9 @@ import {
   renderRequiresList,
   positionPopupRelativeToCard,
   closePopup,
+  focusOnTechCard,   
+    
+  
 } from './script.js';
 
 export function createQuestionContainer() {
@@ -112,7 +115,7 @@ export function openTechPopup(id, cardElement) {
     if (plate) plate.style.display = 'block';
 
     popup.style.position = 'fixed';
-    popup.style.left = '49%';
+    popup.style.left = '50%';
     popup.style.top = '170px';
     popup.style.transform = 'translateX(-50%)';
     popup.style.zIndex = '9999';
@@ -349,15 +352,22 @@ export function renderUnlocksList(parentId) {
             const requiredLevel = getRequiredLevelFromParent(uid, parentId);
             const row = document.createElement('div');
             row.className = 'popup-list-row';
-
             row.style.cursor = 'pointer';
 
+            // === КОРРЕКТНАЯ ОБРАБОТКА КЛИКА (работает между разделами) ===
+            row.addEventListener('click', (e) => {
+                e.stopImmediatePropagation(); // защита от всплытия
 
-           // Делаем мини-карточки кликабельными, нажатие по карточке переводит нас в попап этой карточки.
-           row.addEventListener('click', () => {
-           const targetCard = document.querySelector(`.tech-card[data-id="${uid}"]`);
-           openTechPopup(uid, targetCard);
-          });
+                const targetCard = document.querySelector(`.tech-card[data-id="${uid}"]`);
+
+                if (targetCard) {
+                    // Та же секция — стандартное поведение
+                    openTechPopup(uid, targetCard);
+                } else {
+                    // Другая секция — переключаем раздел
+                    focusOnTechCard(uid);
+                }
+            });
 
             if (uDisplay.isRevealed) {
                 row.innerHTML = `
@@ -368,8 +378,6 @@ export function renderUnlocksList(parentId) {
                     </div>
                 `;
             } else {
-                // Здесь применены новые компактные размеры: 32x32px вместо 42px
-                // И уменьшен clip-path для соответствия новым стилям CSS
                 row.innerHTML = `
                     <div style="width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:18px; color:#555; background:#1a1a2e; border:1px solid #3388ff99; border-radius:4px; flex-shrink:0; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);">?</div>
                     <div class="text-content">

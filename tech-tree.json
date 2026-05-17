@@ -65,12 +65,14 @@
       "icon": "engines/internal combustion engine.png",
       "description": "Сложный термодинамический агрегат, преобразующий химическую энергию окисления углеводородов в механическую работу посредством возвратно-поступательного движения поршневой группы. Технологическая эволюция узла базируется на внедрении прецизионных систем непосредственного впрыска и динамического изменения фаз газораспределения, что позволяет достигать экстремальных показателей эффективной мощности (лошадиных сил) при сохранении структурной надежности блока цилиндров. Использование легкосплавных композитов и аддитивных технологий производства компонентов обеспечивает планомерное снижение общей массы двигателя, улучшая развесовку транспортного модуля. Интеграция интеллектуальных контроллеров управления и оптимизация работы навесного оборудования минимизируют паразитное энергопотребление бортовых систем. Совершенствование архитектуры камеры сгорания и алгоритмов детонационной стойкости расширяет номенклатуру поддерживаемых типов топлива — от стандартных фракций нефти до высокоэнергетических синтетических составов, гарантируя эксплуатационную универсальность агрегата.",
       "unlocks": ["standard_modern_wheel", "gas_tank", "standard_battery_for_transport", "biofuel_engine", "electric_engine", "propeller_engine"],
-      "requires": [],
+      "requires": [
+       { "id": "engine_building", "minLevel": 2 }
+      ],
       "section": "transport",
       "subsection": "atmospheric_&_suborbital",
       "order": 0,
       "row": 2,
-      "level": 1,                 
+      "level": 0,                 
       "maxLevel": 150,
       "scienceCost": 800,
       "difficulty": [
@@ -926,7 +928,9 @@
       "icon": "engines/rocket engine.jpg",
       "description": "Первородная сила, вырывающая нас из объятий гравитации. Огонь, рождённый в камере сгорания, — первый настоящий ключ к звёздам.",
       "unlocks": ["rocket_fuel_tank", "hypersonic_rocket_engine", "solar_sail", "ion_engine", "nuclear_engine"],
-      "requires": [],
+      "requires": [
+       { "id": "engine_building", "minLevel": 5 }
+      ],
       "section": "transport",
       "subsection": "atmospheric_&_suborbital",
       "order": 0,
@@ -1504,8 +1508,144 @@
 
 
 
+    "physics": {
+      "name": "Физика",
+      "icon": "fundamental/physics.png",
+      "description": "Яблоко упало на Ньютона, для него пришла идея ...",
+      "unlocks": ["engine_building", "nuclear_physics"],
+      "requires": [],
+      "section": "fundamental",
+      "subsection": "fusion",
+      "order": 0,
+      "row": 0,
+      "level": 1,                 
+      "maxLevel": 150,
+      "scienceCost": 800,
+      "difficulty": [
+       { "min": 0,  "max": 5,  "multiplier": 1.0 },
+       { "min": 6, "max": 29, "multiplier": 1.8 },
+       { "min": 30, "max": 59, "multiplier": 3.2 },
+       { "min": 60, "max": 99, "multiplier": 6.5 },
+       { "min": 100,"max": 150,"multiplier": 12.0 }
+      ],
+      "progressionStages": [
+       { "min": 1,   "max": 4,   "key": "base",        "name": "Базовая",          "color": "#5c4033" },
+       { "min": 5,   "max": 9,   "key": "primitive",   "name": "Примитивная",     "color": "#800000" },
+       { "min": 10,  "max": 29,  "key": "advanced",    "name": "Развитая",        "color": "#b8860b" },
+       { "min": 30,  "max": 49,  "key": "sophisticated","name": "Продвинутая",    "color": "#228b22" },
+       { "min": 50,  "max": 79,  "key": "super",       "name": "Сверхпродвинутая", "color": "#008b8b" },
+       { "min": 80,  "max": 99,  "key": "legendary",   "name": "Легендарная",     "color": "#00008b" },
+       { "min": 100, "max": 119, "key": "mythic",      "name": "Мифическая",      "color": "#4b0082" },
+       { "min": 120, "max": 150, "key": "divine",      "name": "Божественная",    "color": "rainbow" }
+      ]
+    },
 
+    "materials_science": {
+      "name": "Материаловедение",
+      "icon": "fundamental/materials science.png",
+      "description": "Наука, изучающая материалы и их свойства.",
+      "unlocks": ["engine_building", "nuclear_physics"],
+      "requires": [],
+      "section": "fundamental",
+      "subsection": "fusion",
+      "order": 0,
+      "row": 1,
+      "level": 1,                 
+      "maxLevel": 150,
+      "scienceCost": 800,
+      "difficulty": [
+       { "min": 0,  "max": 5,  "multiplier": 1.0 },
+       { "min": 6, "max": 29, "multiplier": 1.8 },
+       { "min": 30, "max": 59, "multiplier": 3.2 },
+       { "min": 60, "max": 99, "multiplier": 6.5 },
+       { "min": 100,"max": 150,"multiplier": 12.0 }
+      ],
+      "progressionStages": [
+       { "min": 1,   "max": 4,   "key": "base",        "name": "Базовая",          "color": "#5c4033" },
+       { "min": 5,   "max": 9,   "key": "primitive",   "name": "Примитивная",     "color": "#800000" },
+       { "min": 10,  "max": 29,  "key": "advanced",    "name": "Развитая",        "color": "#b8860b" },
+       { "min": 30,  "max": 49,  "key": "sophisticated","name": "Продвинутая",    "color": "#228b22" },
+       { "min": 50,  "max": 79,  "key": "super",       "name": "Сверхпродвинутая", "color": "#008b8b" },
+       { "min": 80,  "max": 99,  "key": "legendary",   "name": "Легендарная",     "color": "#00008b" },
+       { "min": 100, "max": 119, "key": "mythic",      "name": "Мифическая",      "color": "#4b0082" },
+       { "min": 120, "max": 150, "key": "divine",      "name": "Божественная",    "color": "rainbow" }
+      ]
+    },
+
+    "nuclear_physics": {
+      "name": "Ядерная Физика",
+      "icon": "fundamental/nuclear physics.jpg",
+      "description": "Когда-то она подарила миру атомные станции с огромной выработкой энергии, но и в тоже время её использовали для применения ядерной бомбы ...",
+      "unlocks": [],
+      "requires": [
+       { "id": "physics", "minLevel": 7 },
+       { "id": "materials_science", "minLevel": 9 }
+      ],
+      "section": "fundamental",
+      "subsection": "fusion",
+      "order": 1,
+      "row": 1,
+      "level": 1,                 
+      "maxLevel": 150,
+      "scienceCost": 800,
+      "difficulty": [
+       { "min": 0,  "max": 5,  "multiplier": 1.0 },
+       { "min": 6, "max": 29, "multiplier": 1.8 },
+       { "min": 30, "max": 59, "multiplier": 3.2 },
+       { "min": 60, "max": 99, "multiplier": 6.5 },
+       { "min": 100,"max": 150,"multiplier": 12.0 }
+      ],
+      "progressionStages": [
+       { "min": 1,   "max": 4,   "key": "base",        "name": "Базовая",          "color": "#5c4033" },
+       { "min": 5,   "max": 9,   "key": "primitive",   "name": "Примитивная",     "color": "#800000" },
+       { "min": 10,  "max": 29,  "key": "advanced",    "name": "Развитая",        "color": "#b8860b" },
+       { "min": 30,  "max": 49,  "key": "sophisticated","name": "Продвинутая",    "color": "#228b22" },
+       { "min": 50,  "max": 79,  "key": "super",       "name": "Сверхпродвинутая", "color": "#008b8b" },
+       { "min": 80,  "max": 99,  "key": "legendary",   "name": "Легендарная",     "color": "#00008b" },
+       { "min": 100, "max": 119, "key": "mythic",      "name": "Мифическая",      "color": "#4b0082" },
+       { "min": 120, "max": 150, "key": "divine",      "name": "Божественная",    "color": "rainbow" }
+      ]
+    },
+
+    "engine_building": {
+      "name": "Двигателестроение",
+      "icon": "fundamental/engine building.png",
+      "description": "Технология разработки разных двигателей ...",
+      "unlocks": ["internal_combustion_engine", "rocket_engine"],
+      "requires": [
+       { "id": "physics", "minLevel": 2 },
+       { "id": "materials_science", "minLevel": 4 }
+      ],
+      "section": "fundamental",
+      "subsection": "fusion",
+      "order": 1,
+      "row": 0,
+      "level": 0,                 
+      "maxLevel": 150,
+      "scienceCost": 800,
+      "difficulty": [
+       { "min": 0,  "max": 5,  "multiplier": 1.0 },
+       { "min": 6, "max": 29, "multiplier": 1.8 },
+       { "min": 30, "max": 59, "multiplier": 3.2 },
+       { "min": 60, "max": 99, "multiplier": 6.5 },
+       { "min": 100,"max": 150,"multiplier": 12.0 }
+      ],
+      "progressionStages": [
+       { "min": 1,   "max": 4,   "key": "base",        "name": "Базовая",          "color": "#5c4033" },
+       { "min": 5,   "max": 9,   "key": "primitive",   "name": "Примитивная",     "color": "#800000" },
+       { "min": 10,  "max": 29,  "key": "advanced",    "name": "Развитая",        "color": "#b8860b" },
+       { "min": 30,  "max": 49,  "key": "sophisticated","name": "Продвинутая",    "color": "#228b22" },
+       { "min": 50,  "max": 79,  "key": "super",       "name": "Сверхпродвинутая", "color": "#008b8b" },
+       { "min": 80,  "max": 99,  "key": "legendary",   "name": "Легендарная",     "color": "#00008b" },
+       { "min": 100, "max": 119, "key": "mythic",      "name": "Мифическая",      "color": "#4b0082" },
+       { "min": 120, "max": 150, "key": "divine",      "name": "Божественная",    "color": "rainbow" }
+      ]
+    },
     
+
+
+
+  
 
 
 

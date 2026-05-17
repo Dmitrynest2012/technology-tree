@@ -25,7 +25,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   top: 50px;
-  bottom: 10px;
+  bottom: 0px;
   left: 0px;
   width: 100%;
   
@@ -275,15 +275,12 @@ h1 {
 
 
 /* Используем уже созданные анимации из карточки */
-/* @keyframes techBottomShimmer { ... } */
-/* @keyframes pulseGlow { ... } */
-
-
 /* ===================== ДЕРЕВО ТЕХНОЛОГИЙ ===================== */
 .tree-view {
   flex: 1;
   position: relative;
   overflow: auto;
+  /* Задний фон статичен и железно изолирован */
   background: linear-gradient(to bottom, #3535351e 0%, #2929291e 35%, #03030b 75%, #020209 100%);
   padding: 60px 40px 40px;
   scrollbar-width: thin;
@@ -292,17 +289,73 @@ h1 {
   z-index: 1;
 }
 
-/* Фоновая сетка */
+/* 1. БАЗОВАЯ СТАБИЛЬНАЯ СЕТКА (Матрица никогда не пропадает) */
 .tree-view::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: 
-    linear-gradient(rgba(40, 60, 100, 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(40, 60, 100, 0.22) 1px, transparent 1px);
-  background-size: 40px 40px;
   z-index: 0;
+  /* Делаем сетку очень аккуратной и постоянной */
+  background-image: 
+    linear-gradient(rgba(77, 168, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 168, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+
+/* 2. БЛУЖДАЮЩАЯ ЛОКАЛЬНАЯ ВОЛНА (Проявляется только внутри контуров сетки) */
+.tree-view::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* Сделали центр волны ярче (0.25 вместо 0.15) */
+  background-image: radial-gradient(
+    circle, 
+    rgba(77, 168, 255, 0.25) 0%, 
+    rgba(10, 132, 255, 0.08) 50%, 
+    transparent 70%
+  );
+  /* Увеличили размер пятна на 20% (480px вместо 400px) */
+  background-size: 480px 480px;
+  background-repeat: no-repeat;
+  
+  /* Маска обрезает это пятно строго по форме сетки, не выпуская на темный фон */
+  -webkit-mask-image: 
+    linear-gradient(to bottom, #fff 1px, transparent 1px),
+    linear-gradient(to right, #fff 1px, transparent 1px);
+  mask-image: 
+    linear-gradient(to bottom, #fff 1px, transparent 1px),
+    linear-gradient(to right, #fff 1px, transparent 1px);
+    
+  -webkit-mask-size: 40px 40px;
+  mask-size: 40px 40px;
+  
+  /* Медленная хаотичная анимация движения волны */
+  animation: wanderingWave 25s ease-in-out infinite alternate;
+}
+
+
+/* Траектория блуждания волны: плавно ходит по углам и центру, не выходя за рамки */
+@keyframes wanderingWave {
+  0% {
+    background-position: 10% 20%;
+  }
+  25% {
+    background-position: 85% 15%;
+  }
+  50% {
+    background-position: 30% 80%;
+  }
+  75% {
+    background-position: 90% 75%;
+  }
+  100% {
+    background-position: 50% 40%;
+  }
 }
 
 .tree-view > * {
